@@ -1,0 +1,12 @@
+/*PreLoader*/
+#loading{
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	z-index: 1000;
+	background: #079992 url("/image/logo/navlogo.png");
+	background-repeat: no-repeat;
+	background-position: center;
+
+}
+

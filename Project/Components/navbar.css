@@ -1,0 +1,63 @@
+
+nav{
+  font-size: 2rem;
+  background-color: #16a085;
+}
+img.navbar-logo{
+  width: 15rem;
+  height: 6rem;
+  /*border: solid red .5rem;*/
+}
+/*.navbar-icon-top .navbar-nav .nav-link{
+  display: block;
+}*/
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  position: relative;
+  /*width: 3.6rem;*/
+  font-size: 3.4rem;
+  /*border: 2px solid red;*/
+  padding: 0rem 1rem;
+  color: black;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  font-size: 1rem;
+  position: absolute;
+  right: 0rem;
+  font-family: sans-serif;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  top: .3rem;
+  line-height: 1.2rem;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  top: -1.2rem;
+}
+.profile-pic{
+  position: relative;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+
+}
+.dropdown:hover .dropdown-menu {display: block;}
+
+
+
+@media only screen and (max-width: 720px) {
+  html {
+    font-size: 60%;
+  }
+}
+@media only screen and (max-width: 540px) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 25%;
+  }
+}
