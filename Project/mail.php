@@ -1,57 +1,38 @@
 <?php
-$to = "nikunchoudhury@outlook.com";
-$subject = "HTML email";
+require 'PHPMailerAutoload.php';
+require './phpmailer/userinfo.php';
 
-$message = "
-<html>
-<head>
-<title>HTML email</title>
-</head>
-<body>
-<p>This email contains HTML Tags!</p>
-<table>
-<tr>
-<th>Firstname</th>
-<th>Lastname</th>
-</tr>
-<tr>
-<td>John</td>
-<td>Doe</td>
-</tr>
-</table>
-</body>
-</html>
-";
 
-// Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+$mail = new PHPMailer;
 
-// More headers
-$headers .= 'From: <nikchoudhury1998@gmail.com>' . "\r\n";
-$headers .= 'Cc: nikchoudhury1998@gmail.com' . "\r\n";
+$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
-$success= mail($to,$subject,$message,$headers);
-if (!$success) {
-	echo "Failed";
-	print_r($success);
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = EMAIL;                 // SMTP username
+$mail->Password = PASS;                           // SMTP password
+$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 587;                                    // TCP port to connect to
 
-}else{
-	echo "Succeess <br>";
-	echo "$success";
-	// $errorMessage = error_get_last()['message'];
-	// echo "mail($to,$subject,$message,$headers)";
-	print_r($headers);
+$mail->setFrom(EMAIL, 'This is nik');
+$mail->addAddress('nikunchoudhury@gmail.com');     // Add a recipient
+// $mail->addAddress('ellen@example.com');               // Name is optional
+// $mail->addReplyTo('info@example.com', 'Information');
+// $mail->addCC('cc@example.com');
+// $mail->addBCC('bcc@example.com');
+
+// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+$mail->isHTML(true);                                  // Set email format to HTML
+
+$mail->Subject = 'Here is the subject';
+$mail->Body    = '<p>This is the HTML message body <b>in bold!</b></p>';
+$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
 }
-?>
-
-<?php
-// $succ =mail("nikunchoudhury@gmail.com","Subject","Email message","From: nikchoudhury1998@gmail.com");
-// if (!$succ) {
-// 	echo "Failed2";
-// 	print_r(error_get_last());
-
-// }else{
-// 	echo "Succeess";
-// }
-?>

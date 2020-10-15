@@ -82,7 +82,7 @@ session_start();
                           <input
                             type="email"
                             name="email"
-                            id="eamil"
+                            id="email"
                             class="form-control"
                             placeholder="Email"
                             required
@@ -100,6 +100,7 @@ session_start();
                           <?php if (isset($emailexistmsg)) { ?>
                             <?php echo "<p class='error-text'>$emailexistmsg</p>"?>
                           <?php } ?>
+                          <p class='error-text' id="emailError"></p>
                         
                           <input
                             type="text"
@@ -122,6 +123,7 @@ session_start();
                           <?php if (isset($unameexistmsg)) { ?>
                             <?php echo "<p class='error-text'>$unameexistmsg</p>"?>
                           <?php } ?>
+                          <p class='error-text' id="usernameError"></p>
                           
                           <div class="passwordDiv">
                             <input
@@ -211,11 +213,53 @@ session_start();
       });
     </script>
 
+    
+
     <!-- Optional JavaScript -->
     <!-- Bootstrap JS -->
     <script src="./vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Preloader -->
     <script src="./preloader/preloader.js"></script>
+    <script type="text/javascript">
+      $("#email").keyup(function() {
+        $('#email').val()
+         var email = $(this).val();
+         if(email!= '') {
+            $.ajax({
+                url: 'check.php',
+                type: 'post',
+                data: {email:email},
+                success: function(data,status){
+                    $('#emailError').text(data);
+                    // console.log(data.message_email);
+                }
+            })
+            
+             
+         }
+         
+      });
+
+
+      $("#userName").keyup(function() {
+        let username = $("#userName").val();
+        if (username !='') {
+          $.ajax({
+            url: 'check.php',
+            type: 'post',
+            
+            data: {username:username},
+            success:function(data,status){
+              // var newdata = JSON.parse(data);
+              // console.log(newdata.message_username);
+              $("#usernameError").text(data);
+            }
+          }) 
+        }
+      });
+    </script>
+
+   
   </body>
 </html>
