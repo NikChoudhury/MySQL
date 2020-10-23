@@ -25,19 +25,24 @@
           <tbody>
             <tr>
               <td><input type="number" name="num1" id="num1" class="num"></td>
-              <td>Otto</td>
+              <td><input type="number" name="num2" id="num2" class="num2"></td>
             </tr>
             <tr>
               <td><input type="number" name="num2" id="num1" class="num"></td>
-              <td>Otto</td>
+              <td><input type="number" name="num2" id="num2" class="num2"></td>
             </tr>
             <tr>
               <td><input type="number" name="num3" id="num1" class="num"></td>
-              <td>Otto</td>
+              <td><input type="number" name="num2" id="num2" class="num2"></td>
             </tr>
             <tr>
               <td><input type="number" name="total" id="total"></td>
-              <td>Otto</td>
+              <td><input type="number" name="num2" id="gtotal"></td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td><input type="number" name="fresult" id="fresult"></td>
             </tr>
           </tbody>
         </table>
@@ -67,8 +72,54 @@
         result += +$(this).val();
       });
       $('#total').val(result);
-      console.log(result);
+
+
+
+      $('.num2').keyup(function () {
+        var result = 0;
+        $('.num2').each(function () {
+          result += +$(this).val();
+        });
+        $('#gtotal').val(result);
+
+        
+
+        var totalmarks = $('#total').val();
+        var obtainmark = $('#gtotal').val();
+        var percentage = (obtainmark/totalmarks)*100;
+        $('#fresult').val(percentage);
+
+
+      });
+
     });
+
+
+
+    
+
+
+    // if($('#gtotal').val()>0){
+    //     var totalmarks = $('#total').val();
+    //     var obtainmark = $('#gtotal').val();
+
+    //     var percentage = (obtainmark/totalmarks)*100;
+    //     $('#fresult').val(percentage);
+    // }
+    
+    
+
+
+
+     // $('#gtotal').on('change', '#gtotal', function(event) {
+     //     var totalmarks = $('#total').val();
+     //    var obtainmark = $('#gtotal').val();
+
+     //    var percentage = (obtainmark/totalmarks)*100;
+     //    $('#fresult').val(percentage);
+     // });
+
+    
 </script>
 
   </body>
